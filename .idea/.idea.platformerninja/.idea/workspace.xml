@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="66e73ca2-5339-45e9-a610-f6c00472691a" name="Changes" comment="" />
+    <list default="true" id="66e73ca2-5339-45e9-a610-f6c00472691a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.platformerninja/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.platformerninja/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/SNinja_idle 1.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/SNinja_idle 1.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerTest.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Runtime/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -91,7 +98,8 @@
       <updated>1729116548559</updated>
       <workItem from="1729116554908" duration="5497000" />
       <workItem from="1729350897432" duration="1416000" />
-      <workItem from="1729639716208" duration="2055000" />
+      <workItem from="1729639716208" duration="2653000" />
+      <workItem from="1729720261061" duration="6226000" />
     </task>
     <servers />
   </component>

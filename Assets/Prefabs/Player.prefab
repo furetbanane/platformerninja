@@ -68,7 +68,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -123,7 +123,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8432391527666246236}
@@ -262,7 +262,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 5
+  m_GravityScale: 25
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -286,17 +286,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b13143cd792fca42957daa99ad55d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 12
+  moveSpeed: 35
   groundDrag: 10
-  jumpForce: 24
+  airDrag: 0
+  jumpForce: 85
   jumpCooldown: 0.25
-  airMultiplier: 0.4
+  airMultiplier: 1
   camera: {fileID: 6663293462486702293}
-  cameraSize: 5
+  cameraSize: 15
   zoomMultiplier: 0.25
   maxZoomSize: 0
   zoomLerpTime: 0.5
-  playerHeight: 1.8
+  playerWidth: 1
+  playerHeight: 4.75
   groundCheckLayerMask:
     serializedVersion: 2
     m_Bits: 55
