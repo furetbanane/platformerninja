@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float groundDrag;
+    public float airDrag;
 
     public float jumpForce;
     public float jumpCooldown;
@@ -16,6 +18,7 @@ public class PlayerController : MonoBehaviour
     public float maxZoomSize;
     public float zoomLerpTime;
 
+    public float playerWidth;
     public float playerHeight;
     public LayerMask groundCheckLayerMask;
     public bool grounded;
@@ -37,22 +40,38 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        grounded = Physics2D.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask);
-        
+
+        GroundCheck();
         Inputs();
         SpeedControl();
         Visuals();
         CameraControl();
-        
+
         if (grounded)
+        {
             rb.drag = groundDrag;
+        }
         else
-            rb.drag = 0;
+        {
+            rb.drag = airDrag;
+        }
     }
 
     private void FixedUpdate()
     {
         Move();
+    }
+
+    private void GroundCheck()
+    {
+        if (Physics2D.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask) || Physics2D.Raycast(transform.position + new Vector3(playerWidth / 2, 0, 0), Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask) || Physics2D.Raycast(transform.position - new Vector3(playerWidth / 2, 0, 0), Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask))
+        {
+            grounded = true;
+        }
+        else
+        {
+            grounded = false;
+        }
     }
 
     private void Inputs()
@@ -101,17 +120,20 @@ public class PlayerController : MonoBehaviour
 
     private void Visuals()
     {
-        if (horizontalInput != 0 && grounded)
+        if (grounded)
         {
-            animator.SetBool("Moving", true);
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Falling", false);
-        }
-        else if (grounded)
-        {
-            animator.SetBool("Moving", false);
-            animator.SetBool("Jumping", false);
-            animator.SetBool("Falling", false);
+            if (horizontalInput != 0)
+            {
+                animator.SetBool("Moving", true);
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", false);
+            }
+            else
+            {
+                animator.SetBool("Moving", false);
+                animator.SetBool("Jumping", false);
+                animator.SetBool("Falling", false);
+            }
         }
         else
         {
@@ -145,5 +167,13 @@ public class PlayerController : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -(playerHeight / 2 + 0.2f), 0));
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(playerWidth / -2, -(playerHeight / 2 + 0.2f), 0));
+        Gizmos.DrawLine(transform.position, transform.position + new Vector3(playerWidth / 2, -(playerHeight / 2 + 0.2f), 0));
     }
 }
