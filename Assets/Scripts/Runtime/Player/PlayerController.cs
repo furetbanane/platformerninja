@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float jumpCooldown;
     public float airMultiplier;
+
+    public AudioClip jumpAudioClip;
+    [Range(0f, 1f)] public float jumpAudioClipVolume;
+    
     private bool readyToJump;
     
     private float horizontalInput;
@@ -53,8 +57,13 @@ public class PlayerController : MonoBehaviour
     public bool canThrow = true;
 
     [SerializeField] private int projectileCount;
+    
+    public AudioClip throwAudioClip;
+    [Range(0f, 1f)] public float throwAudioClipVolume;
 
     private Vector2 mousePos;
+
+    private SoundPlayer soundPlayer = new SoundPlayer();
     
     public int ProjectileCount
     {
@@ -175,6 +184,8 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0f);
         
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        
+        soundPlayer.PlaySoundOnGameObject(gameObject, jumpAudioClip, jumpAudioClipVolume);
     }
 
     private void ThrowProjectile()
@@ -189,6 +200,8 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         
         projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+        
+        soundPlayer.PlaySoundOnGameObject(gameObject, throwAudioClip, throwAudioClipVolume);
         
         Invoke(nameof(ResetThrow), throwCooldown);
     }

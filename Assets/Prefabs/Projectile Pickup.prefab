@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickupCount: 1
+  pickupAudioClip: {fileID: 8300000, guid: d37259c37a7c1aa4a849f52a8c98e7d5, type: 3}
+  pickupAudioClipVolume: 0.1

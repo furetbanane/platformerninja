@@ -98,11 +98,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particlePrefab: {fileID: 1678343002149806063, guid: 8482976ae4eeec745a02a27ef60aa97a, type: 3}
-  particleLifeTime: 0
+  particleLifeTime: 3
   speed: 100
-  rotateSpeed: 0
+  rotateSpeed: 5
   collisionRadius: 0.5
   lifeTime: 5
   collisionCheckLayerMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 63
+  hitAudioClip: {fileID: 8300000, guid: 8acfe1e08f39ad24fb9e9806600871e3, type: 3}
+  hitAudioClipVolume: 0.1

@@ -343,16 +343,20 @@ MonoBehaviour:
   jumpForce: 75
   jumpCooldown: 0.25
   airMultiplier: 1
-  playerWidth: 1
+  jumpAudioClip: {fileID: 8300000, guid: b0018bb0879db294bb9bd7f7540ff542, type: 3}
+  jumpAudioClipVolume: 0.1
+  playerWidth: 1.25
   playerHeight: 4.75
   groundCheckLayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 63
   grounded: 0
   projectilePrefab: {fileID: 8882076802533055443, guid: a75835a2a44fb9643997023b259504d5, type: 3}
   throwCooldown: 0.25
   canThrow: 1
   projectileCount: 0
+  throwAudioClip: {fileID: 8300000, guid: 994203759826f944b87ed84565c504dd, type: 3}
+  throwAudioClipVolume: 0.1
   projectileCountText: {fileID: 1570888393400473475}
 --- !u!1 &3501689271136172497
 GameObject:
