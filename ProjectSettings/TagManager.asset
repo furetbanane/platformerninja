@@ -4,26 +4,17 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
   - ProjectilePickup
-=======
-  - player
->>>>>>> b28ad8bcc45c86d5aa22d8fddbe8104d52faa5b7
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
-  - player
-<<<<<<< HEAD
-  - Player Projectile
-  - Pickup
-=======
-  - Ennemie
+  - Player
   - 
->>>>>>> b28ad8bcc45c86d5aa22d8fddbe8104d52faa5b7
+  - 
   - 
   - 
   - 

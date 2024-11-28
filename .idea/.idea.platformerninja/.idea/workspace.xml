@@ -6,19 +6,45 @@
   <component name="ChangeListManager">
     <list default="true" id="66e73ca2-5339-45e9-a610-f6c00472691a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.platformerninja/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.platformerninja/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/2D Pixel Art Platformer Biome - American Forest/Atlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/2D Pixel Art Platformer Biome - American Forest/Atlas.spriteatlas" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/NinjaIdle.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/NinjaIdle.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PlayerContainer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PlayerContainer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile Pickup.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile Pickup.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Projectile.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/PlayerTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/PlayerTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Runtime/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/Project.Runtime.asmdef" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Runtime/Project.Runtime.asmdef" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Debug.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Textures/Debug.png.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/PlayerController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/PlayerController.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/Projectile.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/Projectile.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/ProjectilePickup.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Runtime/ProjectilePickup.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/2D Pixel Art Platformer Biome - American Forest/Atlas.spriteatlas" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/2D Pixel Art Platformer Biome - American Forest/Atlas.spriteatlas" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/2D Pixel Art Platformer Biome - American Forest/Sprites.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/2D Pixel Art Platformer Biome - American Forest/Sprites.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/Ninja Files/Ninja PNG/1024 pixel/grafic/pixil-frame-0 (7).png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/Ninja Files/Ninja PNG/1024 pixel/grafic/pixil-frame-0 (7).png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/BACKGROUND.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/BACKGROUND.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/BUSH - BACKGROUND.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/BUSH - BACKGROUND.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/VINES - Second.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/VINES - Second.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - First.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - First.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - Fourth.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - Fourth.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - Second.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - Second.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - Third.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Backgrounds/WOODS - Third.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-3.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-3.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-4.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-4.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-5.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-5.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-6.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-6.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-7.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/BUSH FOREGROUND 1-7.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 1-1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 1-1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 1-2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 1-2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 2-1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 2-1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 2-2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 2-2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 3-1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 3-1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 3-2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/GRASS 3-2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/MUSHROOM 1-1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/MUSHROOM 1-1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/MUSHROOM 1-2.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/MUSHROOM 1-2.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/MUSHROOM 2-1.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Decorations/MUSHROOM 2-1.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Tiles/Tilesheet - WOODS.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/graphisme/karsiori/TileMap/Tiles/Tilesheet - WOODS.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/muisc.mixer" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/muisc.mixer" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -117,7 +143,8 @@
       <workItem from="1729720261061" duration="6226000" />
       <workItem from="1730936430178" duration="4732000" />
       <workItem from="1731538766329" duration="7669000" />
-      <workItem from="1732143988593" duration="2353000" />
+      <workItem from="1732143988593" duration="3235000" />
+      <workItem from="1732749808397" duration="2065000" />
     </task>
     <servers />
   </component>

@@ -14,6 +14,11 @@ public class Projectile : MonoBehaviour
     public float lifeTime;
 
     public LayerMask collisionCheckLayerMask;
+    
+    public AudioClip hitAudioClip;
+    [Range(0f, 1f)] public float hitAudioClipVolume;
+
+    private SoundPlayer soundPlayer = new SoundPlayer();
 
     private void Start()
     {
@@ -27,6 +32,8 @@ public class Projectile : MonoBehaviour
 
         if (Physics2D.OverlapCircle(transform.position, collisionRadius, collisionCheckLayerMask))
         {
+            soundPlayer.PlaySoundOnGameObject(gameObject, hitAudioClip, hitAudioClipVolume);
+            
             GameObject particle = Instantiate(particlePrefab, transform.position, Quaternion.identity);
             Destroy(particle, particleLifeTime);
             Destroy(gameObject);
