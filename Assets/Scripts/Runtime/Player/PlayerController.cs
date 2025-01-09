@@ -1,281 +1,307 @@
+using System;
 using UnityEngine;
 using TMPro;
 using Cinemachine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Camera")]
-    [Space]
-    
-    public Camera cam;
+	[Header("Camera")]
+	[Space]
 
-    public CinemachineVirtualCamera virtualCamera;
-    
-    
-    public float cameraSize;
-    
-    [Space]
-    [Header("Movement")]
-    [Space]
-    
-    public float moveSpeed;
+	public Camera cam;
 
-    public float dragMultiplier;
-    //public float groundDrag;
-    //public float airDrag;
+	public CinemachineVirtualCamera virtualCamera;
 
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
 
-    public AudioClip jumpAudioClip;
-    [Range(0f, 1f)] public float jumpAudioClipVolume;
-    
-    private bool readyToJump;
-    
-    private float horizontalInput;
+	public float cameraSize;
 
-    private Vector3 moveDirection;
+	[Space]
+	[Header("Movement")]
+	[Space]
 
-    [Space]
-    [Header("Ground Collision Detection")]
-    [Space]
-    
-    public float playerWidth;
-    public float playerHeight;
-    public LayerMask groundCheckLayerMask;
-    public bool grounded;
+	public float moveSpeed;
 
-    [Space]
-    [Header("Projectile Throw")]
-    [Space]
+	public float dragMultiplier;
+	//public float groundDrag;
+	//public float airDrag;
 
-    public GameObject projectilePrefab;
-    
-    public float throwCooldown;
+	public float jumpForce;
+	public float jumpCooldown;
+	public float airMultiplier;
 
-    public bool canThrow = true;
+	public AudioClip jumpAudioClip;
+	[Range(0f, 1f)] public float jumpAudioClipVolume;
 
-    [SerializeField] private int projectileCount;
-    
-    public AudioClip throwAudioClip;
-    [Range(0f, 1f)] public float throwAudioClipVolume;
+	private bool readyToJump;
 
-    private Vector2 mousePos;
+	private float horizontalInput;
 
-    private SoundPlayer soundPlayer = new SoundPlayer();
-    
-    public int ProjectileCount
-    {
-        get
-        {
-            return projectileCount;
-        }
+	private Vector3 moveDirection;
 
-        set
-        {
-            projectileCount = value;
-            OnProjectileCountChanged();
-        }
-    }
+	[Space]
+	[Header("Ground Collision Detection")]
+	[Space]
 
-    public TMP_Text projectileCountText;
-    
-    private Rigidbody2D rb;
-    private Animator animator;
+	public float playerWidth;
+	public float playerHeight;
+	public LayerMask groundCheckLayerMask;
+	public bool grounded;
 
-    private int direction = 1;
+	[Space]
+	[Header("Projectile Throw")]
+	[Space]
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+	public GameObject projectilePrefab;
 
-        readyToJump = true;
-        
-        OnProjectileCountChanged();
-        UpdateCamera();
-    }
+	public float throwCooldown;
 
-    private void Update()
-    {
+	public bool canThrow = true;
 
-        GroundCheck();
-        Inputs();
-        SpeedControl();
-        Visuals();
+	[SerializeField] private int projectileCount;
 
-        //if (grounded)
-        //{
-        //    rb.drag = groundDrag;
-        //}
-        //else
-        //{
-        //    rb.drag = airDrag;
-        //}
-    }
+	public AudioClip throwAudioClip;
+	[Range(0f, 1f)] public float throwAudioClipVolume;
 
-    private void FixedUpdate()
-    {
-        Move();
-        
-        Vector2 dragVel = new Vector2(-rb.velocity.x, 0);
-        rb.AddForce(dragVel * dragMultiplier, ForceMode2D.Impulse);
-    }
+	private Vector2 mousePos;
 
-    private void GroundCheck()
-    {
-        if (Physics2D.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask) || Physics2D.Raycast(transform.position + new Vector3(playerWidth / 2, 0, 0), Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask) || Physics2D.Raycast(transform.position - new Vector3(playerWidth / 2, 0, 0), Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask))
-        {
-            grounded = true;
-        }
-        else
-        {
-            grounded = false;
-        }
-    }
+	private SoundPlayer soundPlayer = new SoundPlayer();
 
-    private void Inputs()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+	private InputActionMap gameplayInputActionMap;
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) && readyToJump && grounded)
-        {
-            Debug.Log("JUMPED!");
-            
-            readyToJump = false;
-            
-            Jump();
-            
-            Invoke(nameof(ResetJump), jumpCooldown);
-        }
+	private PlayerInput playerInput;
 
-        if (Input.GetMouseButtonDown(0) && canThrow && ProjectileCount > 0)
-        {
-            ThrowProjectile();
-        }
+	public int ProjectileCount
+	{
+		get
+		{
+			return projectileCount;
+		}
 
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-    }
+		set
+		{
+			projectileCount = value;
+			OnProjectileCountChanged();
+		}
+	}
 
-    private void Move()
-    {
-        moveDirection = Vector3.right * horizontalInput;
-        
-        if (grounded)
-            rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode2D.Force);
-        else
-            rb.AddForce(moveDirection * moveSpeed * 10f * airMultiplier, ForceMode2D.Force);
-    }
+	public TMP_Text projectileCountText;
 
-    private void SpeedControl()
-    {
-        Vector2 flatVel = new Vector2(rb.velocity.x, 0f);
+	private Rigidbody2D rb;
+	private Animator animator;
 
-        if (flatVel.magnitude > moveSpeed)
-        {
-            Vector2 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector2(limitedVel.x, rb.velocity.y);
-        }
-    }
+	private int direction = 1;
 
-    private void Jump()
-    {
-        rb.velocity = new Vector2(rb.velocity.x, 0f);
-        
-        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        
-        soundPlayer.PlaySoundOnGameObject(gameObject, jumpAudioClip, jumpAudioClipVolume);
-    }
+	private void OnEnable()
+	{
 
-    private void ThrowProjectile()
-    {
-        canThrow = false;
+		gameplayInputActionMap = GetComponent<PlayerInput>().actions.FindActionMap("Gameplay");
+		gameplayInputActionMap.Enable();
+	}
 
-        ProjectileCount--;
+	private void OnDisable()
+	{
+		gameplayInputActionMap.Disable();
+	}
 
-        GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
-        
-        Vector2 lookDir = mousePos - new Vector2(transform.position.x, transform.position.y);
-        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        
-        projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
-        
-        soundPlayer.PlaySoundOnGameObject(gameObject, throwAudioClip, throwAudioClipVolume);
-        
-        Invoke(nameof(ResetThrow), throwCooldown);
-    }
+	private void Start()
+	{
+		playerInput = GetComponent<PlayerInput>();
 
-    private void ResetThrow()
-    {
-        canThrow = true;
-    }
+		rb = GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 
-    private void Visuals()
-    {
-        if (grounded)
-        {
-            if (horizontalInput != 0)
-            {
-                animator.SetBool("Moving", true);
-                animator.SetBool("Jumping", false);
-                animator.SetBool("Falling", false);
-            }
-            else
-            {
-                animator.SetBool("Moving", false);
-                animator.SetBool("Jumping", false);
-                animator.SetBool("Falling", false);
-            }
-        }
-        else
-        {
-            animator.SetBool("Moving", false);
+		readyToJump = true;
 
-            if (rb.velocity.y > 0)
-            {
-                animator.SetBool("Jumping", true);
-                animator.SetBool("Falling", false);
-            }
-            else
-            {
-                animator.SetBool("Jumping", false);
-                animator.SetBool("Falling", true);
-            }
-        }
+		OnProjectileCountChanged();
+		UpdateCamera();
+	}
 
-        if (horizontalInput < 0)
-        {
-            direction = -1;
-            GetComponent<SpriteRenderer>().flipX = true;
-        }
-        else if (horizontalInput > 0)
-        {
-            direction = 1;
-            GetComponent<SpriteRenderer>().flipX = false;
-        }
-    }
+	private void Update()
+	{
+		GroundCheck();
+		Inputs();
+		SpeedControl();
+		Visuals();
 
-    private void OnProjectileCountChanged()
-    {
-        projectileCountText.text = ProjectileCount.ToString();
-    }
+		//if (grounded)
+		//{
+		//    rb.drag = groundDrag;
+		//}
+		//else
+		//{
+		//    rb.drag = airDrag;
+		//}
+	}
 
-    private void ResetJump()
-    {
-        readyToJump = true;
-    }
+	private void FixedUpdate()
+	{
+		Move();
 
-    private void UpdateCamera()
-    {
-        virtualCamera.m_Lens.OrthographicSize = cameraSize;
-    }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -(playerHeight / 2 + 0.2f), 0));
-        Gizmos.DrawLine(transform.position + new Vector3(playerWidth / -2, 0, 0), transform.position + new Vector3(playerWidth / -2, -(playerHeight / 2 + 0.2f), 0));
-        Gizmos.DrawLine(transform.position + new Vector3(playerWidth / 2, 0, 0), transform.position + new Vector3(playerWidth / 2, -(playerHeight / 2 + 0.2f), 0));
-    }
+		Vector2 dragVel = new Vector2(-rb.velocity.x, 0);
+		rb.AddForce(dragVel * dragMultiplier, ForceMode2D.Impulse);
+	}
+
+	private void GroundCheck()
+	{
+		if (Physics2D.Raycast(transform.position, Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask) || Physics2D.Raycast(transform.position + new Vector3(playerWidth / 2, 0, 0), Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask) || Physics2D.Raycast(transform.position - new Vector3(playerWidth / 2, 0, 0), Vector2.down, playerHeight * 0.5f + 0.2f, groundCheckLayerMask))
+		{
+			grounded = true;
+		}
+		else
+		{
+			grounded = false;
+		}
+	}
+
+	private void Inputs()
+	{
+		//horizontalInput = Input.GetAxisRaw("Horizontal");
+		horizontalInput = gameplayInputActionMap.FindAction("Move").ReadValue<Vector2>().x;
+
+		if (gameplayInputActionMap.FindAction("Jump").IsPressed() && readyToJump && grounded)
+		{
+			readyToJump = false;
+
+			Jump();
+
+			Invoke(nameof(ResetJump), jumpCooldown);
+		}
+
+		if (gameplayInputActionMap.FindAction("Fire").triggered && canThrow && ProjectileCount > 0)
+		{
+			ThrowProjectile();
+		}
+
+		if (playerInput.currentControlScheme == "Keyboard")
+		{
+			mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+		}
+		else if (playerInput.currentControlScheme == "Gamepad")
+		{
+			Vector2 mouseOffset = gameplayInputActionMap.FindAction("Aim").ReadValue<Vector2>();
+			mousePos = new Vector2(transform.position.x, transform.position.y) + mouseOffset;
+		}
+	}
+
+	private void Move()
+	{
+		moveDirection = Vector3.right * horizontalInput;
+
+		if (grounded)
+			rb.AddForce(moveDirection * moveSpeed * 10f, ForceMode2D.Force);
+		else
+			rb.AddForce(moveDirection * moveSpeed * 10f * airMultiplier, ForceMode2D.Force);
+	}
+
+	private void SpeedControl()
+	{
+		Vector2 flatVel = new Vector2(rb.velocity.x, 0f);
+
+		if (flatVel.magnitude > moveSpeed)
+		{
+			Vector2 limitedVel = flatVel.normalized * moveSpeed;
+			rb.velocity = new Vector2(limitedVel.x, rb.velocity.y);
+		}
+	}
+
+	private void Jump()
+	{
+		rb.velocity = new Vector2(rb.velocity.x, 0f);
+
+		rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+		soundPlayer.PlaySoundOnGameObject(gameObject, jumpAudioClip, jumpAudioClipVolume);
+	}
+
+	private void ThrowProjectile()
+	{
+		canThrow = false;
+
+		ProjectileCount--;
+
+		GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation);
+
+		Vector2 lookDir = mousePos - new Vector2(transform.position.x, transform.position.y);
+		float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+
+		projectile.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+		soundPlayer.PlaySoundOnGameObject(gameObject, throwAudioClip, throwAudioClipVolume);
+
+		Invoke(nameof(ResetThrow), throwCooldown);
+	}
+
+	private void ResetThrow()
+	{
+		canThrow = true;
+	}
+
+	private void Visuals()
+	{
+		if (grounded)
+		{
+			if (horizontalInput != 0)
+			{
+				animator.SetBool("Moving", true);
+				animator.SetBool("Jumping", false);
+				animator.SetBool("Falling", false);
+			}
+			else
+			{
+				animator.SetBool("Moving", false);
+				animator.SetBool("Jumping", false);
+				animator.SetBool("Falling", false);
+			}
+		}
+		else
+		{
+			animator.SetBool("Moving", false);
+
+			if (rb.velocity.y > 0)
+			{
+				animator.SetBool("Jumping", true);
+				animator.SetBool("Falling", false);
+			}
+			else
+			{
+				animator.SetBool("Jumping", false);
+				animator.SetBool("Falling", true);
+			}
+		}
+
+		if (horizontalInput < 0)
+		{
+			direction = -1;
+			GetComponent<SpriteRenderer>().flipX = true;
+		}
+		else if (horizontalInput > 0)
+		{
+			direction = 1;
+			GetComponent<SpriteRenderer>().flipX = false;
+		}
+	}
+
+	private void OnProjectileCountChanged()
+	{
+		projectileCountText.text = ProjectileCount.ToString();
+	}
+
+	private void ResetJump()
+	{
+		readyToJump = true;
+	}
+
+	private void UpdateCamera()
+	{
+		virtualCamera.m_Lens.OrthographicSize = cameraSize;
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.color = Color.green;
+		Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -(playerHeight / 2 + 0.2f), 0));
+		Gizmos.DrawLine(transform.position + new Vector3(playerWidth / -2, 0, 0), transform.position + new Vector3(playerWidth / -2, -(playerHeight / 2 + 0.2f), 0));
+		Gizmos.DrawLine(transform.position + new Vector3(playerWidth / 2, 0, 0), transform.position + new Vector3(playerWidth / 2, -(playerHeight / 2 + 0.2f), 0));
+	}
 }

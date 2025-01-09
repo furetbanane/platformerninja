@@ -10,7 +10,6 @@ public class Projectile : MonoBehaviour
     
     public float speed;
     public float rotateSpeed;
-    public float collisionRadius;
     public float lifeTime;
 
     public LayerMask collisionCheckLayerMask;
@@ -20,29 +19,48 @@ public class Projectile : MonoBehaviour
 
     private SoundPlayer soundPlayer = new SoundPlayer();
 
+    private Vector2 previousPos;
+
+    private bool hasHit = false;
+
     private void Start()
     {
         Destroy(gameObject, lifeTime);
+
+        previousPos = transform.position;
     }
     
     private void Update()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
-        transform.Rotate(new Vector3(0, 0, Vector3.right.x * rotateSpeed * Time.deltaTime));
-
-        if (Physics2D.OverlapCircle(transform.position, collisionRadius, collisionCheckLayerMask))
+        if (!hasHit)
         {
-            soundPlayer.PlaySoundOnGameObject(gameObject, hitAudioClip, hitAudioClipVolume);
-            
-            GameObject particle = Instantiate(particlePrefab, transform.position, Quaternion.identity);
-            Destroy(particle, particleLifeTime);
-            Destroy(gameObject);
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+            transform.Rotate(new Vector3(0, 0, Vector3.right.x * rotateSpeed * Time.deltaTime));
+
+            Vector3 fromPosition = previousPos;
+            Vector3 toPosition = transform.position;
+            Vector3 direction = toPosition - fromPosition;
+
+            RaycastHit2D hit = Physics2D.Raycast(previousPos, direction, Vector2.Distance(previousPos, transform.position), collisionCheckLayerMask);
+
+            if (hit)
+            {
+                Hit(hit.normal);
+            }
+
+            previousPos = transform.position;
         }
     }
 
-    private void OnDrawGizmosSelected()
+    private void Hit(Vector3 normal)
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, collisionRadius);
-    }
+		soundPlayer.PlaySoundOnGameObject(gameObject, hitAudioClip, hitAudioClipVolume);
+
+		GameObject particle = Instantiate(particlePrefab, transform.position, Quaternion.identity);
+        particle.transform.up = normal;
+		Destroy(particle, particleLifeTime);
+		Destroy(gameObject);
+
+        hasHit = true;
+	}
 }
